@@ -42,7 +42,7 @@ It is required to create a Project on Google Cloud Platform to test and deploy t
 ✓ Use terraform code snip to enable google cloud service APIs
 
 <details>
-```terraform
+```
 // Locals block to define required service APIs.
 locals {
 googleapis = [
