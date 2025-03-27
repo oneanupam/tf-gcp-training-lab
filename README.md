@@ -51,7 +51,6 @@ It is required to create a Project on Google Cloud Platform to test and deploy t
         "iam.googleapis.com"
         ]
     }
-
     // Resource block to enable required service APIs
     resource "google_project_service" "apis" {
     for_each = toset(local.googleapis)
