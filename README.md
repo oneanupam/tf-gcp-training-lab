@@ -87,6 +87,9 @@ To execute the Terraform code, go to command prompt and then run the following c
 -   [Required] `terraform apply -auto-approve` # To execute the actions proposed in a terraform plan to create, update, or destroy infrastructure.
 -   [Optional] `terraform destroy -auto-approve` # To destroy the created infrastructure. Specific resources can be destroyed using resource targeting.
 
+> [!CAUTION]
+> `terraform destroy -auto-approve` is destructuve in nature, kindly ensure to double check before using this command for any live environment.
+
 ## References
 - https://www.terraform.io/cli
 - https://www.terraform.io/language
