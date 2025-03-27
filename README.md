@@ -39,9 +39,8 @@ Whatever option you choose, make sure to provide the following roles to selected
 ### Project Requirement
 It is required to create a Project on Google Cloud Platform to test and deploy the services. In order to use the google cloud services in a GCP Project, respective service API(s) must be enabled before resource deployment. You can either enable these using terraform or using gcloud command. Sample examples are mentioned below -
 
-✓ Use terraform code snip to enable google cloud service APIs
+**✓** Use terraform code snip to enable google cloud service APIs
 
-<details>
 ```
     // Locals block to define required service APIs.
     locals {
@@ -60,7 +59,14 @@ It is required to create a Project on Google Cloud Platform to test and deploy t
     disable_on_destroy     = false
     }
 ```
-</details>
+
+**✓** Use gcloud command to enable google cloud service APIs
+```
+	gcloud services enable servicenetworking.googleapis.com \
+	    cloudresourcemanager.googleapis.com \
+	    compute.googleapis.com \
+	    iam.googleapis.com
+```
 
 ### Remote Backend Setup
 For local backend, terraform state file is stored locally in the current working directory. To use a remote backend (to enable the collaboration of other team members), create a google cloud storage bucket in a GCP project and enable the versioning. Use below gcloud commands to created and set up gcs backend bucket.
