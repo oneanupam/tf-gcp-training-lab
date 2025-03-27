@@ -21,7 +21,7 @@ Resources in this repository are meant to use with Terraform 1.3.6 (check the te
 ```
 
 **Option-02:** You can create a Service Account and reference service account key file in providers configuration block.
-
+<details>
 ```
     provider "google" {
         credentials = file("./credentials/service_account_key.json")
