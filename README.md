@@ -43,22 +43,22 @@ It is required to create a Project on Google Cloud Platform to test and deploy t
 
 <details>
 ```
-// Locals block to define required service APIs.
-locals {
-googleapis = [
-    "compute.googleapis.com",
-    "cloudresourcemanager.googleapis.com",
-    "iam.googleapis.com"
-    ]
-}
-// Resource block to enable required service APIs
-resource "google_project_service" "apis" {
-for_each = toset(local.googleapis)
-
-project                = "[UPDATE_PROJECT_ID]"
-service                = each.key
-disable_on_destroy     = false
-}
+    // Locals block to define required service APIs.
+    locals {
+    googleapis = [
+        "compute.googleapis.com",
+        "cloudresourcemanager.googleapis.com",
+        "iam.googleapis.com"
+        ]
+    }
+    // Resource block to enable required service APIs
+    resource "google_project_service" "apis" {
+    for_each = toset(local.googleapis)
+    
+    project                = "[UPDATE_PROJECT_ID]"
+    service                = each.key
+    disable_on_destroy     = false
+    }
 ```
 </details>
 
