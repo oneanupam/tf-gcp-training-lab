@@ -62,10 +62,10 @@ It is required to create a Project on Google Cloud Platform to test and deploy t
 
 **✓** Use gcloud command to enable google cloud service APIs
 ```
-	gcloud services enable servicenetworking.googleapis.com \
-	    cloudresourcemanager.googleapis.com \
-	    compute.googleapis.com \
-	    iam.googleapis.com
+gcloud services enable servicenetworking.googleapis.com \
+    cloudresourcemanager.googleapis.com \
+    compute.googleapis.com \
+    iam.googleapis.com
 ```
 
 ### Remote Backend Setup
