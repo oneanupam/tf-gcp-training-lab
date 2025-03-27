@@ -40,6 +40,7 @@ Whatever option you choose, make sure to provide the following roles to selected
 It is required to create a Project on Google Cloud Platform to test and deploy the services. In order to use the google cloud services in a GCP Project, respective service API(s) must be enabled before resource deployment. You can either enable these using terraform or using gcloud command. Sample examples are mentioned below -
 
 ✓ Use terraform code snip to enable google cloud service APIs
+
 <details>
 ```terraform
     // Locals block to define required service APIs.
@@ -63,6 +64,7 @@ It is required to create a Project on Google Cloud Platform to test and deploy t
 </details>
 
 ✓ Use gcloud command to enable google cloud service APIs.
+
 <details>
 ```bash
 	gcloud services enable servicenetworking.googleapis.com \
