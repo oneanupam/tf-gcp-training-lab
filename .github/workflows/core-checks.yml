@@ -9,10 +9,6 @@ jobs:
   pull-request-checks:
     name: Core Checks Job
     runs-on: ubuntu-latest
-    permissions:
-        contents: read
-        id-token: write
-        pull-requests: write
     steps:
       # Checkout the repository code
       - name: Code Checkout
