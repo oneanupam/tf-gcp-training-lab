@@ -41,5 +41,4 @@ jobs:
         uses: trufflesecurity/trufflehog@main
         with:
           path: ./ # Code repository path
-          base: main # Start scanning from here (usually main branch).
           head: HEAD # Scan commits until here (usually dev branch).
