@@ -40,5 +40,4 @@ jobs:
       - name: Secret Scanning
         uses: trufflesecurity/trufflehog@main
         with:
-          path: ./ # Code repository path
-          head: HEAD # Scan commits until here (usually dev branch).
+          extra_args: --results=verified,unknown --fail
