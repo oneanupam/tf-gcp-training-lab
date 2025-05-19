@@ -41,5 +41,6 @@ jobs:
         uses: trufflesecurity/trufflehog@main
         with:
           path: ./ # Code repository path
-          head: HEAD # Scan commits until here (usually dev branch).
+          base: ""
+          head: ${{ github.ref_name }} # Scan commits until here (usually dev branch).
           extra_args: --results=verified,unknown --exclude-paths="README.md,LICENSE" # Exclude certain files from scanning
