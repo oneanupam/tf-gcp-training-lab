@@ -21,6 +21,17 @@ output "tst_vpc_subnet_details" {
   }
 }
 
+output "tst_vpc_subnet_details_2" {
+  description = "The details of the subnets in key value pairs in the form - 'subnet name' as key and 'subnet id' as value."
+  value = {
+    for instance in google_compute_subnetwork.tst_vpc_subnet :
+    instance.name => {
+      "subnet_id" = (instance.id)
+      "subnet_cidr" = (instance.ip_cidr_range)
+    }
+  }
+}
+
 # Output using splat expression
 output "tst_vpc_subnet_ids_02" {
   description = "The IDs of the subnets being created."
