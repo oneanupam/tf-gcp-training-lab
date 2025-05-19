@@ -1,0 +1,45 @@
+name: PR Checks Workflow
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - edited
+
+jobs:
+  pull-request-checks:
+    name: Pull Request Checks Job
+    runs-on: ubuntu-latest
+    permissions:
+        contents: read
+        id-token: write
+        pull-requests: write
+    steps:
+      # Checkout the repository code
+      - name: Code checkout
+        id: code_checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Fetch all history for all branches and tags
+          ref: ${{ github.event.pull_request.head.ref }} # Checkout the PR branch
+
+      # Check PR title prefix to ensure it follows the convention
+      - name: Check PR title prefix
+        run: |
+          echo "PR Title: '${{ github.event.pull_request.title }}'"
+
+          if [[ ! "${{ github.event.pull_request.title }}" =~ ^(ci|feat|fix|chore|docs|refactor): ]]; then
+            echo "❌ PR title must start with one of: ci:, feat:, fix:, chore:, docs:, refactor:"
+            exit 1
+          fi
+
+      # Scan the repo for any sensitive information like secrets etc
+      - name: Secret Scanning
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./ # Code repository path
+          base: main # Start scanning from here (usually main branch).
+          head: HEAD # Scan commits until here (usually dev branch).

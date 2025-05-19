@@ -11,14 +11,14 @@ defaults:
   run:
     working-directory: ./tf-count/
 env:
-  TERRAFORM_VER: 1.8.0
+  TERRAFORM_VER: 1.12.0
   TERRAFORM_DIR: "./tf-count/"
   CLOUDSDK_VER: 480.0.0
 permissions:
   pull-requests: write
 jobs:
   infrastructure-deployment:
-    name: Infrastructure Deployment
+    name: Infrastructure Deployment Job
     runs-on: ubuntu-latest
     permissions:
         contents: read
@@ -59,7 +59,7 @@ jobs:
         uses: google-github-actions/auth@v0.3.1
         with:
           create_credentials_file: 'true'
-          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER_ID }}	
+          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER_ID }}
           service_account: ${{ secrets.SERVICE_ACCOUNT }}
 
       # Install the specified version of Terraform CLI
@@ -73,17 +73,17 @@ jobs:
       - name: Terraform fmt
         id: tf_fmt
         run: terraform fmt -check
-        
+
       # Initialize the Terraform working directory
       - name: Terraform Init
         id: tf_init
         run: terraform init
-        
+
       # Validate the terraform configuration files
       - name: Terraform Validate
         id: tf_validate
         run: terraform validate -no-color
-        
+
       # Generates an execution plan for Terraform
       - name: Terraform Plan
         id: tf_plan
@@ -102,25 +102,25 @@ jobs:
             #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
             #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
             <details><summary>Validation Output</summary>
-        
+
             \`\`\`\n
             ${{ steps.validate.outputs.stdout }}
             \`\`\`
-        
+
             </details>
-        
+
             #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
-        
+
             <details><summary>Show Plan</summary>
-        
+
             \`\`\`\n
             ${process.env.PLAN}
             \`\`\`
-        
+
             </details>
-        
+
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
-        
+
             github.rest.issues.createComment({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,

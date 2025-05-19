@@ -1,0 +1,34 @@
+name: Core Checks Workflow
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - '*'
+  workflow_dispatch:
+
+jobs:
+  pull-request-checks:
+    name: Core Checks Job
+    runs-on: ubuntu-latest
+    permissions:
+        contents: read
+        id-token: write
+        pull-requests: write
+    steps:
+      # Checkout the repository code
+      - name: Code Checkout
+        id: code_checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Fetch all history for all branches and tags
+          ref: ${{ github.event.pull_request.head.ref }} # Checkout the PR branch
+
+      # Scan the repo for any sensitive information like secrets etc
+      - name: Secret Scanning
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./ # Code repository path
+          base: main # Start scanning from here (usually main branch).
+          head: HEAD # Scan commits until here (usually dev branch).
