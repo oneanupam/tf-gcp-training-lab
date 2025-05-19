@@ -43,4 +43,4 @@ jobs:
           path: ./ # Code repository path
           base: ""
           head: ${{ github.ref_name }} # Scan commits until here (usually dev branch).
-          extra_args: --results=verified,unknown --exclude-paths="README.md,LICENSE.md" # Exclude certain files from scanning
+          extra_args: --results=verified,unknown --exclude-paths="README\.md|LICENSE" # Exclude certain files from scanning
