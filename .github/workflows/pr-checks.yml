@@ -36,17 +36,11 @@ jobs:
             exit 1
           fi
 
-      - name: Show PR head branch
-        run: echo "Head branch is ${{ github.head_ref }}"
-
-      - name: Show head branch
-        run: echo "Head branch is ${{ github.ref_name }}"
-
       # Scan the repo for any sensitive information like secrets etc
       - name: Secret Scanning
         uses: trufflesecurity/trufflehog@main
         with:
           path: ./ # Code repository path
           base: ""
-          head: ${{ github.head_ref || github.ref_name }} # Scan commits until here (usually dev branch).
+          head: ${{ github.head_ref || github.ref_name }} # First one shows PR source branch and second push branch
           extra_args: --results=verified,unknown

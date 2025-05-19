@@ -1,8 +1,5 @@
 name: Core Checks Workflow
 on:
-  pull_request:
-    branches:
-      - master
   push:
     branches:
       - '*'
@@ -23,12 +20,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0 # Fetch all history for all branches and tags
-          ref: ${{ github.event.pull_request.head.ref }} # Checkout the PR branch
 
       # Scan the repo for any sensitive information like secrets etc
       - name: Secret Scanning
         uses: trufflesecurity/trufflehog@main
         with:
           path: ./ # Code repository path
-          base: main # Start scanning from here (usually main branch).
-          head: HEAD # Scan commits until here (usually dev branch).
+          base: ""
+          head: ${{ github.head_ref || github.ref_name }} # First one shows PR source branch and second push branch
+          extra_args: --results=verified,unknown
