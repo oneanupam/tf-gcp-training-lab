@@ -14,21 +14,22 @@ Pull requests are the best way to propose changes to the codebase (we use ["fork
 ## Guidelines
 
 ### Commit Message Guidelines
-Use the combination of "Commit context" and "Commit summary" with an optional "Commit description".
+Use the combination of "Commit Type" and "Commit Summary" with an optional "Commit description".
 
-* Commit context: Use 1-3 prefixes to describe the context of your commit Like add/update/remove.
-* Commit summary: Always use the imperative present tense. Don’t capitalize the first letter of the commit message. Don’t use a period at the end of your text.
+* Commit Type: Use the proper commit type for the changes as per [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) types.
+* Commit Summary: Always use the imperative present tense (Write your commit messages as if you're giving a command or describing what the commit does, not what you did). Don’t capitalize the first letter of the commit message. Don’t use a period at the end of your text.
 ```
 Ex: Suppose, You updated a file. So, the commit message could be -
-    [update] readme file updated
+    docs: update readme file
+    feat: add application dockerfile
 ```
 
 ### PR Guidelines
-Format: [Branch Name][Action] Comment
+Format: [Commit Type] Short Summary
 
 ```
 Ex: Suppose, You added some functionality. So, the title could be -
-    [master][add] added function to read input from user
+    [feat] added function to read input from user
 ```
 
 ### Coding Guidelines
