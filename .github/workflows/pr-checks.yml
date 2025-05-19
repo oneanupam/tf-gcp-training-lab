@@ -42,5 +42,5 @@ jobs:
         with:
           path: ./ # Code repository path
           base: ""
-          head: ${{ github.ref_name }} # Scan commits until here (usually dev branch).
+          head: ${{ github.head_ref }} # Scan commits until here (usually dev branch).
           extra_args: --results=verified,unknown
