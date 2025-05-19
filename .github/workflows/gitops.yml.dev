@@ -9,16 +9,16 @@ on:
   workflow_dispatch:
 defaults:
   run:
-    working-directory: ./tf-count/
+    working-directory: .
 env:
   TERRAFORM_VER: 1.12.0
   TERRAFORM_DIR: "./tf-count/"
-  CLOUDSDK_VER: 480.0.0
+  CLOUDSDK_VER: 522.0.0
 permissions:
   pull-requests: write
 jobs:
-  infrastructure-deployment:
-    name: Infrastructure Deployment Job
+  infrastructure-provisioning:
+    name: Infrastructure Provisioning Job
     runs-on: ubuntu-latest
     permissions:
         contents: read
@@ -28,15 +28,16 @@ jobs:
       # Checkout the repository code
       - name: Code checkout
         id: code_checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       # Scan the repo for any sensitive information like secrets etc
       - name: Secret Scanning
         uses: trufflesecurity/trufflehog@main
         with:
           path: ./ # Code repository path
-          base: main # Start scanning from here (usually main branch).
-          head: HEAD # Scan commits until here (usually dev branch).
+          base: ""
+          head: ${{ github.head_ref || github.ref_name }} # First one shows PR source branch and second push branch
+          extra_args: --results=verified,unknown
 
       # Static code analysis using aqua security's tfsec
       - name: Run tfsec scan
@@ -56,7 +57,7 @@ jobs:
       # Setup the authentication for the Google Cloud using WIF
       - id: gcp_auth
         name: Authenticate to GCP
-        uses: google-github-actions/auth@v0.3.1
+        uses: 'google-github-actions/auth@v2'
         with:
           create_credentials_file: 'true'
           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER_ID }}
