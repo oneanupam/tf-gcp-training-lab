@@ -44,6 +44,12 @@ variable "auto_create_subnetworks" {
 variable "delete_default_routes" {
   type        = bool
   description = "If set to true, default routes (0.0.0.0/0) will be deleted immediately after network creation."
+  validation {
+    condition = (
+      var.delete_default_routes == true || var.delete_default_routes == false
+    )
+    error_message = "delete_default_routes must be either true or false."
+  }
 }
 
 variable "network_firewall_policy_enforcement_order" {
