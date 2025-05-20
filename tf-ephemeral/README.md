@@ -1,4 +1,4 @@
-# Terraform Variables
+# Terraform Ephemeral Resources
 This sub-project contains terraform code to understand the concept of `ephemerality in resources` with the help of resource deployment on Google Cloud Platform.
 
 - Ephemeral resources are Terraform resources that are essentially temporary. Ephemeral resources have a unique lifecycle, and Terraform does not store information about ephemeral resources in state or plan files. Each ephemeral block describes one or more ephemeral resources, such as a temporary password or connection to another system.
