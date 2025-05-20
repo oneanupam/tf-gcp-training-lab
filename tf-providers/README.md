@@ -2,7 +2,7 @@
 This sub-project contains terraform code to understand the concept of `meta-argument provider` with the help of resource deployment on Google Cloud Platform.
 
 -   The provider meta-argument specifies which provider configuration to use for a resource, overriding Terraform's default behavior of selecting one based on the resource type name.
-1. Its value should be an unquoted `<PROVIDER>.<ALIAS>` in case you have defined multiple provider configuration. 
+1. Its value should be an unquoted `<PROVIDER>.<ALIAS>` in case you have defined multiple provider configuration.
 2. Its value should be an unquoted `<PROVIDER>` in case you want to define the provider at any case.
 3. Explicitly set the provider for your resource to google-beta to avoid the conflicts.
 
