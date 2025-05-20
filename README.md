@@ -10,7 +10,7 @@ Resources in this repository are meant to use with Terraform 1.3.6 (check the te
 -   [Cloud SDK](https://cloud.google.com/sdk/install) >= 414.0.0
 -   [Terraform](https://www.terraform.io/downloads.html) >= 1.3.6
 
-> **Note:**
+> [!NOTE]
 > See [Installation-Guide](https://gist.github.com/anupam-sy/7458df6506e8e3cfb28c0ff56fab546a) on how to install Terraform.
 
 ### Permissions Requirement
@@ -32,9 +32,9 @@ Whatever option you choose, make sure to provide the following roles to selected
 - `roles/resourcemanager.projectOwner` on all the projects where you want to house your resources using service account's email.
 - `roles/storage.admin` on the GCS bucket housing terraform state files. This role is required in case of using GCS backend.
 
-**Note:**
-- Access can be more fine-grained to follow the principle of least privilege (PoLP).
-- You can explore the other authentication options by reviewing the references and use the best suited for your usecase.
+> [!NOTE]
+> Access can be more fine-grained to follow the principle of least privilege (PoLP).
+> You can explore the other authentication options by reviewing the references and use the best suited for your usecase.
 
 ### Project Requirement
 It is required to create a Project on Google Cloud Platform to test and deploy the services. In order to use the google cloud services in a GCP Project, respective service API(s) must be enabled before resource deployment. You can either enable these using terraform or using gcloud command. Sample examples are mentioned below -
@@ -86,6 +86,9 @@ To execute the Terraform code, go to command prompt and then run the following c
 -   [Optional] `terraform plan` # To create an execution plan for terraform configuration files.
 -   [Required] `terraform apply -auto-approve` # To execute the actions proposed in a terraform plan to create, update, or destroy infrastructure.
 -   [Optional] `terraform destroy -auto-approve` # To destroy the created infrastructure. Specific resources can be destroyed using resource targeting.
+
+> [!CAUTION]
+> Run `terraform destroy` command with caution as it can destroy all the deployed infrastructure.
 
 ## References
 - https://www.terraform.io/cli
