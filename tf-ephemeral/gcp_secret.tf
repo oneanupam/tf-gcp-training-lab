@@ -5,7 +5,7 @@
 ephemeral "random_password" "tst_vm_password" {
   length           = 16
   special          = true
-  override_special = "#$&*"
+  override_special = var.override_special_characters
 }
 
 // Resource block to create a secret in Google Secret Manager
