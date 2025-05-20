@@ -34,4 +34,6 @@ override.tf.json
 
 # Exception for backend.conf file
 !/tf-standard_backends/backend.conf.
+
+# Exception for terraform.lock.hcl file, which is used to lock provider versions (recommended to be checked in)
 .terraform.lock.hcl
