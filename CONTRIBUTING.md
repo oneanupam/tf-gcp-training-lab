@@ -44,4 +44,4 @@ We use GitHub issues to track bugs. Report a bug by opening a new issue.
 All of the terraform configuration files in the repository must be linted or formatted using `terraform fmt` to maintain a standard of quality.
 
 ## License
-By contributing, you agree that your contributions will be licensed under its MIT License.
+By contributing, you agree that your contributions will be licensed under its [MIT License](LICENSE.md).
