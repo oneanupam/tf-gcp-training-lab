@@ -9,8 +9,12 @@ output "tst_vpc_id" {
   description = "The ID of the VPC being created"
 }
 
-output "generated_value" {
-  value       = random_id.tst_password.hex
-  description = "The value of the generated random value."
+output "tst_password_value" {
+  value       = random_password.tst_password.result
+  description = "The generated value of the password"
   sensitive   = true
+  precondition {
+    condition     = length(random_password.tst_password.result) >= 16
+    error_message = "Generated password must be of 16 digits or more."
+  }
 }
