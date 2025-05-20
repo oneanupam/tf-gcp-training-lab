@@ -1,6 +1,8 @@
-// resource block to generate a random hex code for password
-resource "random_id" "tst_password" {
-  byte_length = 8
+// Resource block to generate a random password
+resource "random_password" "tst_password" {
+  length           = 16
+  special          = true
+  override_special = "!#$%&*"
 }
 
 // Resource block to deploy vpc network
