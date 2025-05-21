@@ -1,12 +1,10 @@
 name: GitOps Workflow
 on:
-  pull_request:
-    branches:
-      - master
-  push:
-    branches:
-      - master
   workflow_dispatch:
+    inputs:
+      working-dir:
+        description: 'the sub-project working directory'
+        required: true
 defaults:
   run:
     working-directory: ./tf-outputs/
@@ -44,8 +42,8 @@ jobs:
         id: static_code_analysis
         uses: aquasecurity/tfsec-action@v1.0.3
         with:
-          working_directory: ${{ env.TERRAFORM_DIR }}
-          additional_args: --minimum-severity HIGH
+          working_directory: ${{ github.event.inputs.working-dir }}
+          additional_args: --tfvars-file terraform.tfvars --minimum-severity HIGH
 
       # Install the latest version of Google Cloud SDK
       - id: cloud_sdk_installation
@@ -81,16 +79,12 @@ jobs:
       # Validate the terraform configuration files
       - name: Terraform Validate
         id: tf_validate
-        run: |
-          validate=$(terraform validate -no-color)
-          echo "validate_output=${validate}" >> "$GITHUB_OUTPUT"
+        run: terraform validate -no-color
 
       # Generates an execution plan for Terraform
       - name: Terraform Plan
         id: tf_plan
-        run: |
-          plan=$(terraform plan -no-color)
-          echo "plan_output=${plan}" >> "$GITHUB_OUTPUT"
+        run: terraform plan -no-color
 
       # Comments the terraform plan output on pull request
       - id: comment_output
@@ -106,7 +100,7 @@ jobs:
             <details><summary>Validation Output</summary>
 
             \`\`\`\n
-            ${{ steps.tf_validate.outputs.validate_output }}
+            please see the stage output for more details.
             \`\`\`
 
             </details>
@@ -116,7 +110,7 @@ jobs:
             <details><summary>Show Plan</summary>
 
             \`\`\`\n
-            ${{ steps.tf_validate.outputs.validate_output }}
+            please see the stage output for more details.
             \`\`\`
 
             </details>
