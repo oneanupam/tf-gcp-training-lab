@@ -86,50 +86,12 @@ jobs:
         run: terraform plan -no-color
         working-directory: ${{ github.event.inputs.working-dir }}
 
-      # Comments the terraform plan output on pull request
-      - id: comment_output
-        name: Comment Terraform Plan Output
-        uses: actions/github-script@v7
-        env:
-          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
-        with:
-          script: |
-            const output = `#### Terraform Format and Style 🖌\`${{ steps.tf_fmt.outcome }}\`
-            #### Terraform Initialization ⚙️\`${{ steps.tf_init.outcome }}\`
-            #### Terraform Validation 🤖\`${{ steps.tf_validate.outcome }}\`
-            <details><summary>Validation Output</summary>
-
-            \`\`\`\n
-            please see the stage output for more details.
-            \`\`\`
-
-            </details>
-
-            #### Terraform Plan 📖\`${{ steps.tf_plan.outcome }}\`
-
-            <details><summary>Show Plan</summary>
-
-            \`\`\`\n
-            please see the stage output for more details.
-            \`\`\`
-
-            </details>
-
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ github.event.inputs.working-dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
-
-            github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: output
-            })
-
       # Executes the apply operation to deploy the actual infrastructure
-      # - name: Terraform Apply
-      #   id: tf_apply
-      #   if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      #   run: terraform apply -auto-approve
-      #   working-directory: ${{ github.event.inputs.working-dir }}
+      - name: Terraform Apply
+        id: tf_apply
+        if: github.ref == 'refs/heads/master'
+        run: terraform apply -auto-approve
+        working-directory: ${{ github.event.inputs.working-dir }}
 
       - name: Notify success
         if: success() # this step runs only if the previous steps succeeded.
