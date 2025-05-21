@@ -66,21 +66,25 @@ jobs:
       - name: Terraform fmt
         id: tf_fmt
         run: terraform fmt -check
+        working-directory: ${{ github.event.inputs.working-dir }}
 
       # Initialize the Terraform working directory
       - name: Terraform Init
         id: tf_init
         run: terraform init
+        working-directory: ${{ github.event.inputs.working-dir }}
 
       # Validate the terraform configuration files
       - name: Terraform Validate
         id: tf_validate
         run: terraform validate -no-color
+        working-directory: ${{ github.event.inputs.working-dir }}
 
       # Generates an execution plan for Terraform
       - name: Terraform Plan
         id: tf_plan
         run: terraform plan -no-color
+        working-directory: ${{ github.event.inputs.working-dir }}
 
       # Comments the terraform plan output on pull request
       - id: comment_output
@@ -125,6 +129,7 @@ jobs:
       #   id: tf_apply
       #   if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       #   run: terraform apply -auto-approve
+      #   working-directory: ${{ github.event.inputs.working-dir }}
 
       - name: Notify success
         if: success() # this step runs only if the previous steps succeeded.
