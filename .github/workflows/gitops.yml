@@ -1,18 +1,16 @@
 name: GitOps Workflow
 on:
-  pull_request:
-    branches:
-      - master
-  push:
-    branches:
-      - master
   workflow_dispatch:
+    inputs:
+      working-dir:
+        description: 'the sub-project working directory'
+        required: true
 defaults:
   run:
-    working-directory: .
+    working-directory: ./tf-outputs/
 env:
   TERRAFORM_VER: 1.12.0
-  TERRAFORM_DIR: "./tf-count/"
+  TERRAFORM_DIR: "./tf-outputs/"
   CLOUDSDK_VER: 522.0.0
 permissions:
   pull-requests: write
@@ -44,8 +42,8 @@ jobs:
         id: static_code_analysis
         uses: aquasecurity/tfsec-action@v1.0.3
         with:
-          working_directory: ${{ env.TERRAFORM_DIR }}
-          additional_args: --minimum-severity HIGH
+          working_directory: ${{ github.event.inputs.working-dir }}
+          additional_args: --tfvars-file terraform.tfvars --minimum-severity HIGH
 
       # Install the latest version of Google Cloud SDK
       - id: cloud_sdk_installation
@@ -59,9 +57,7 @@ jobs:
         name: Authenticate to GCP
         uses: 'google-github-actions/auth@v2'
         with:
-          create_credentials_file: 'true'
           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER_ID }}
-          service_account: ${{ secrets.SERVICE_ACCOUNT }}
 
       # Install the specified version of Terraform CLI
       - id: tf_installation
@@ -94,33 +90,32 @@ jobs:
       - id: comment_output
         name: Comment Terraform Plan Output
         uses: actions/github-script@v7
-        if: github.event_name == 'pull_request'
         env:
           PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
         with:
           script: |
-            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
-            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
-            #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
+            const output = `#### Terraform Format and Style 🖌\`${{ steps.tf_fmt.outcome }}\`
+            #### Terraform Initialization ⚙️\`${{ steps.tf_init.outcome }}\`
+            #### Terraform Validation 🤖\`${{ steps.tf_validate.outcome }}\`
             <details><summary>Validation Output</summary>
 
             \`\`\`\n
-            ${{ steps.validate.outputs.stdout }}
+            please see the stage output for more details.
             \`\`\`
 
             </details>
 
-            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+            #### Terraform Plan 📖\`${{ steps.tf_plan.outcome }}\`
 
             <details><summary>Show Plan</summary>
 
             \`\`\`\n
-            ${process.env.PLAN}
+            please see the stage output for more details.
             \`\`\`
 
             </details>
 
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ github.event.inputs.working-dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
 
             github.rest.issues.createComment({
                 issue_number: context.issue.number,
