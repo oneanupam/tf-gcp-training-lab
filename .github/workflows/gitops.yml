@@ -5,12 +5,8 @@ on:
       working-dir:
         description: 'the sub-project working directory'
         required: true
-defaults:
-  run:
-    working-directory: ./tf-outputs/
 env:
   TERRAFORM_VER: 1.12.0
-  TERRAFORM_DIR: "./tf-outputs/"
   CLOUDSDK_VER: 522.0.0
 permissions:
   pull-requests: write
@@ -43,7 +39,7 @@ jobs:
         uses: aquasecurity/tfsec-action@v1.0.3
         with:
           working_directory: ${{ github.event.inputs.working-dir }}
-          additional_args: --tfvars-file terraform.tfvars --minimum-severity HIGH
+          additional_args: --minimum-severity HIGH
 
       # Install the latest version of Google Cloud SDK
       - id: cloud_sdk_installation
