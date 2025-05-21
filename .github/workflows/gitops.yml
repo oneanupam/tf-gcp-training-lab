@@ -81,12 +81,16 @@ jobs:
       # Validate the terraform configuration files
       - name: Terraform Validate
         id: tf_validate
-        run: terraform validate -no-color
+        run: |
+          validate=$(terraform validate -no-color)
+          echo "validate_output=${validate}" >> "$GITHUB_OUTPUT"
 
       # Generates an execution plan for Terraform
       - name: Terraform Plan
         id: tf_plan
-        run: terraform plan -no-color
+        run: |
+          plan=$(terraform plan -no-color)
+          echo "plan_output=${plan}" >> "$GITHUB_OUTPUT"
 
       # Comments the terraform plan output on pull request
       - id: comment_output
@@ -102,7 +106,7 @@ jobs:
             <details><summary>Validation Output</summary>
 
             \`\`\`\n
-            ${{ steps.validate.outputs.stdout }}
+            ${{ steps.tf_validate.outputs.validate_output }}
             \`\`\`
 
             </details>
@@ -112,7 +116,7 @@ jobs:
             <details><summary>Show Plan</summary>
 
             \`\`\`\n
-            ${process.env.PLAN}
+            ${{ steps.tf_validate.outputs.validate_output }}
             \`\`\`
 
             </details>
