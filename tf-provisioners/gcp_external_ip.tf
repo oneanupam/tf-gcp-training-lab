@@ -10,8 +10,19 @@ resource "google_compute_address" "tst_eip" {
 
   # local-exec for linux os
   provisioner "local-exec" {
-    command     = "echo eip name: ${self.name}, eip address: ${self.id} > eip-details.txt"
+    when        = create
+    command     = "echo eip name: ${self.name} > eip-details.txt"
     working_dir = "${path.module}/reports/"
+  }
+
+  provisioner "local-exec" {
+    when    = create
+    command = "echo eip address: ${self.id} >> ${path.module}/reports/eip-details.txt"
+  }
+
+  provisioner "local-exec" {
+    when    = destroy
+    command = "rm -f ${path.module}/reports/eip-details.txt"
   }
 
   /*
