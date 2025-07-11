@@ -1,2 +1,0 @@
-account: anupam@e.oneanupam.in
-project: weighty-sunbeam-460307-q6
