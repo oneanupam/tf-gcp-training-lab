@@ -1,0 +1,2 @@
+eip name: fdn-tst-eip-01
+eip address: projects/weighty-sunbeam-460307-q6/regions/us-central1/addresses/fdn-tst-eip-01

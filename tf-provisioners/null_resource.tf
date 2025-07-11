@@ -8,8 +8,16 @@ resource "null_resource" "tst_execution" {
 
   # local-exec for linux os
   provisioner "local-exec" {
-    when        = create
-    command     = "gcloud config get-value project > project-details.txt"
+    when    = create
+    command = <<-EOT
+    echo "Creating project details file..."
+    gcloud config set project $PROJECT
+    echo "account: $(gcloud config get-value account)" >> project-details.txt
+    echo "project: $(gcloud config get-value project)" >> project-details.txt
+    EOT
+    environment = {
+      "PROJECT" = "weighty-sunbeam-460307-q6"
+    }
     working_dir = "${path.module}/reports/"
   }
 

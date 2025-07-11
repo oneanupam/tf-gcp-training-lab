@@ -17,7 +17,9 @@ resource "google_compute_address" "tst_eip" {
 
   provisioner "local-exec" {
     when    = create
-    command = "echo eip address: ${self.id} >> ${path.module}/reports/eip-details.txt"
+    command = <<-EOT
+    echo "eip address:" ${self.id} >> ${path.module}/reports/eip-details.txt
+    EOT
   }
 
   provisioner "local-exec" {
