@@ -10,7 +10,6 @@
 # }
 
 // New resource block for existing vpc network
-// Ensure to remove the old resource block before the move operation
 resource "google_compute_network" "tst_vpc_new" {
   project                                   = var.project_id
   name                                      = var.vpc_name
