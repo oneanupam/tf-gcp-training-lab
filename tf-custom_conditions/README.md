@@ -1,5 +1,5 @@
-# Terraform Checks
-This sub-project contains terraform code to understand the concept of `Check Block` and its optional arguments with the help of resource deployment on Google Public Cloud.
+# Terraform Custom Conditions
+This sub-project contains terraform code to understand the concept of `Custom Conditions` and its optional arguments with the help of resource deployment on Google Public Cloud.
 
 - The check block can validate your infrastructure outside the usual resource lifecycle. Check blocks address a gap between post-apply and functional validation of infrastructure.
 - Check blocks allow you to define custom conditions that execute on every Terraform plan or apply operation without affecting the overall status of an operation.
