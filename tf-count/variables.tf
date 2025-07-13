@@ -20,7 +20,6 @@ variable "terraform_service_account" {
   # Make sure to give "roles/iam.serviceAccountTokenCreator" role to an identity (who will trigger the terraform code) on this service account for the impersonation to succeed.
 }
 
-
 variable "vpc_name" {
   description = "The name of the VPC network being created."
   type        = string
