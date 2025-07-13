@@ -1,7 +1,8 @@
 // Variables definition
-project_id              = "prj-tf-training"
-default_region          = "us-central1"
-default_zone            = "us-central1-a"
+project_id     = "weighty-sunbeam-460307-q6"
+default_region = "us-central1"
+default_zone   = "us-central1-a"
+
 vpc_name                = "tst-vpc-01"
 vpc_description         = "     Foundation application vpc network     "
 auto_create_subnetworks = "false"
