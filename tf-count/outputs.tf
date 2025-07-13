@@ -26,8 +26,8 @@ output "tst_vpc_subnet_details_2" {
   value = {
     for instance in google_compute_subnetwork.tst_vpc_subnet :
     instance.name => {
-      "subnet_id" = (instance.id)
-      "subnet_cidr" = (instance.ip_cidr_range)
+      "subnet_id"   = instance.id
+      "subnet_cidr" = instance.ip_cidr_range
     }
   }
 }
