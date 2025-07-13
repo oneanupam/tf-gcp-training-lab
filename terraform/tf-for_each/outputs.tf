@@ -20,6 +20,14 @@ output "tst_vpc_subnet_ids" {
   ]
 }
 
+output "tst_vpc_subnet_ids_02" {
+  description = "The IDs of the subnets being created."
+  value = {
+    for key, value in google_compute_subnetwork.tst_vpc_subnet :
+    key => value.id
+  }
+}
+
 output "tst_eip_ids" {
   description = "The IDs of the external IPs being reserved."
   value = [
