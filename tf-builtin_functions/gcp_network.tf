@@ -5,7 +5,7 @@
 // Locals block to transform and construct values
 locals {
   final_vpc_name = join("", ["fdn-", var.vpc_name])
-  final_vpc_desc = trimspace(var.vpc_description)
+  final_vpc_desc = join(" ", [trimspace(var.vpc_description), local.final_vpc_name])
 }
 
 // Resource block to deploy vpc network
