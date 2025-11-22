@@ -1,5 +1,5 @@
 // Variables definition
-project_id                = "weighty-sunbeam-460307-q6"
+project_id                = "disco-bedrock-469510-v3"
 default_region            = "us-central1"
 default_zone              = "us-central1-a"
 terraform_service_account = "infra-prov-svc-acc@weighty-sunbeam-460307-q6.iam.gserviceaccount.com"
