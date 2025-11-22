@@ -46,7 +46,9 @@ jobs:
         name: Authenticate to GCP
         uses: "google-github-actions/auth@v3"
         with:
+          create_credentials_file: "true"
           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER_ID }}
+          service_account: ${{ secrets.SERVICE_ACCOUNT }}
 
       # Install the specified version of Terraform CLI
       - id: tf_installation
