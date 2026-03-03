@@ -41,3 +41,5 @@ override.tf.json
 
 _site/*
 Gemfile.lock
+**/_site/*
+**/.sass-cache/*
