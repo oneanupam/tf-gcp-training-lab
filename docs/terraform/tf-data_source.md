@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Outputs
+title: Data Sources
 ---
 
-This sub-project contains terraform code to understand the concept of `Output Block` and its optional arguments with the help of resource deployment on Google Public Cloud and Random ID generation.
+This sub-project contains terraform code to understand the concept of `data source` with the help of resource deployment on Google Cloud Platform.
 
-- Output values make information available on the command line about your infrastructure, and can expose information for other Terraform configurations to use.
-- It is typically recommended to place all the output values in a file `outputs.tf`. These outputs can be viewed on CLI using `terraform output`.
+- Data sources allow Terraform to use information defined outside of Terraform or defined by another separate Terraform configuration.
+- A data source is accessed via a special kind of resource known as a data resource, declared using a data block
 
 ## Prerequisites
 
@@ -25,4 +25,4 @@ To execute the terraform code, go to command prompt and then run the following c
 
 ## References
 
-- https://developer.hashicorp.com/terraform/language/values/outputs
+- https://developer.hashicorp.com/terraform/language/data-sources

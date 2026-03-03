@@ -1,12 +1,11 @@
 ---
 layout: page
-title: Outputs
+title: Lifecycle
 ---
 
-This sub-project contains terraform code to understand the concept of `Output Block` and its optional arguments with the help of resource deployment on Google Public Cloud and Random ID generation.
+This sub-project contains terraform code to understand the concept of `lifecycle block` with the help of resource deployment on Google Cloud Platform.
 
-- Output values make information available on the command line about your infrastructure, and can expose information for other Terraform configurations to use.
-- It is typically recommended to place all the output values in a file `outputs.tf`. These outputs can be viewed on CLI using `terraform output`.
+- Lifecycle block is used to change the typical behavoiur of resource. lifecycle is a nested block that can appear within a resource block. The lifecycle block and its contents are meta-arguments, available for all resource blocks regardless of type.
 
 ## Prerequisites
 
@@ -25,4 +24,5 @@ To execute the terraform code, go to command prompt and then run the following c
 
 ## References
 
-- https://developer.hashicorp.com/terraform/language/values/outputs
+- https://developer.hashicorp.com/terraform/language/resources/behavior
+- https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle

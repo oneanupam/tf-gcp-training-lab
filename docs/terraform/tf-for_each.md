@@ -1,12 +1,14 @@
 ---
 layout: page
-title: Outputs
+title: for_each
 ---
 
-This sub-project contains terraform code to understand the concept of `Output Block` and its optional arguments with the help of resource deployment on Google Public Cloud and Random ID generation.
+This sub-project contains terraform code to understand the concept of `meta-argument for_each and for expression` with the help of resource deployment on Google Cloud Platform.
 
-- Output values make information available on the command line about your infrastructure, and can expose information for other Terraform configurations to use.
-- It is typically recommended to place all the output values in a file `outputs.tf`. These outputs can be viewed on CLI using `terraform output`.
+- The for_each meta-argument accepts a map or a set of strings, and creates an instance for each item in that map or set.
+- In blocks where for_each is set, an additional each object is available in expressions, so you can modify the configuration of each instance.
+  **each.key** — The map key (or set member) corresponding to this instance.
+  **each.value** — The map value corresponding to this instance. (If a set was provided, this is the same as each.key.)
 
 ## Prerequisites
 
@@ -25,4 +27,4 @@ To execute the terraform code, go to command prompt and then run the following c
 
 ## References
 
-- https://developer.hashicorp.com/terraform/language/values/outputs
+- https://developer.hashicorp.com/terraform/language/meta-arguments/for_each

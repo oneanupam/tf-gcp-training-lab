@@ -1,12 +1,15 @@
 ---
 layout: page
-title: Outputs
+title: Provider
 ---
 
-This sub-project contains terraform code to understand the concept of `Output Block` and its optional arguments with the help of resource deployment on Google Public Cloud and Random ID generation.
+This sub-project contains terraform code to understand the concept of `meta-argument provider` with the help of resource deployment on Google Cloud Platform.
 
-- Output values make information available on the command line about your infrastructure, and can expose information for other Terraform configurations to use.
-- It is typically recommended to place all the output values in a file `outputs.tf`. These outputs can be viewed on CLI using `terraform output`.
+- The provider meta-argument specifies which provider configuration to use for a resource, overriding Terraform's default behavior of selecting one based on the resource type name.
+
+1. Its value should be an unquoted `<PROVIDER>.<ALIAS>` in case you have defined multiple provider configuration.
+2. Its value should be an unquoted `<PROVIDER>` in case you want to define the provider at any case.
+3. Explicitly set the provider for your resource to google-beta to avoid the conflicts.
 
 ## Prerequisites
 
@@ -25,4 +28,4 @@ To execute the terraform code, go to command prompt and then run the following c
 
 ## References
 
-- https://developer.hashicorp.com/terraform/language/values/outputs
+- https://registry.terraform.io/providers/hashicorp/google/latest/docs
