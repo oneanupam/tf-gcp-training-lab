@@ -40,3 +40,4 @@ override.tf.json
 
 
 _site/*
+Gemfile.lock
