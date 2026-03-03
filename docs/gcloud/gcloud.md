@@ -1,7 +1,12 @@
-# GCloud CLI
+---
+layout: page
+title: Google Cloud CLI
+---
+
 This document contains the basic gcloud cli commands to work efficiently with google cloud using gcloud CLI.
 
 ## CLI Config Management
+
 To manage the multiple configurations for google cloud CLI, use the below command -
 
 ```shell
@@ -42,6 +47,7 @@ gcloud auth revoke # Remove access credentials for an account.
 ```
 
 ## References
+
 - https://docs.cloud.google.com/sdk/docs/cheatsheet
 - https://cloud.google.com/sdk/gcloud/reference
 - https://docs.cloud.google.com/sdk/docs/authorizing
