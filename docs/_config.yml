@@ -7,7 +7,7 @@ theme: minima
 # Show nested pages in header navigation
 header_pages:
   - getting-started/requirements.md
-  - terraform/terraform.md
+  - terraform/index.md
   - gcloud/gcloud.md
   - cicd/github-actions.md
 

@@ -7,5 +7,5 @@ This page contains the readme for terraform concepts. Visit the respective code 
 
 ## Topics
 
-- [Variables](/terraform/tf-variables.md)
-- [Outputs](/terraform/tf-outputs.md)
+- [Variables](./tf-variables.md)
+- [Outputs](./tf-outputs.md)
