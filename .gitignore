@@ -37,3 +37,6 @@ override.tf.json
 
 # Exception for terraform.lock.hcl file, which is used to lock provider versions (recommended to be checked in)
 .terraform.lock.hcl
+
+
+_site/*
