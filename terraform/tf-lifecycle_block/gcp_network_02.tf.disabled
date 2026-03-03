@@ -1,0 +1,14 @@
+// Resource block to deploy VPC Network
+resource "google_compute_network" "tst_vpc_02" {
+  project                         = var.project_id
+  name                            = var.vpc_name_02
+  routing_mode                    = "GLOBAL"
+  auto_create_subnetworks         = var.auto_create_subnetworks
+  delete_default_routes_on_create = var.delete_default_routes
+
+  lifecycle {
+    ignore_changes = [
+      routing_mode
+    ]
+  }
+}

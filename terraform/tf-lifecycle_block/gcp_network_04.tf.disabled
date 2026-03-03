@@ -1,0 +1,19 @@
+// Terraform data resource example with input and lifecycle replace_triggered_by
+resource "terraform_data" "app_version" {
+  input = var.app_version
+}
+
+// Resource block to deploy VPC Network
+resource "google_compute_network" "tst_vpc_04" {
+  project                         = var.project_id
+  name                            = var.vpc_name_04
+  routing_mode                    = "GLOBAL"
+  auto_create_subnetworks         = var.auto_create_subnetworks
+  delete_default_routes_on_create = var.delete_default_routes
+
+  lifecycle {
+    replace_triggered_by = [
+      terraform_data.app_version.input
+    ]
+  }
+}

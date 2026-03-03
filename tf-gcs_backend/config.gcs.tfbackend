@@ -1,3 +1,0 @@
-bucket      = "bkt-tfstates-xxxxxx"
-prefix      = "terraform/tst"
-credentials = "../credentials/tf_mgcp_svc_account.json"

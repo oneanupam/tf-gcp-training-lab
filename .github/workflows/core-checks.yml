@@ -1,0 +1,27 @@
+name: Core Checks Workflow
+on:
+  push:
+    branches:
+      - '*'
+  workflow_dispatch:
+
+jobs:
+  pull-request-checks:
+    name: Core Checks Job
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository code
+      - name: Code Checkout
+        id: code_checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history for all branches and tags
+
+      # Scan the repo for any sensitive information like secrets etc
+      - name: Secret Scanning
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./ # Code repository path
+          base: ""
+          head: ${{ github.head_ref || github.ref_name }} # First one shows PR source branch and second push branch
+          extra_args: --results=verified,unknown
