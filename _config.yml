@@ -1,0 +1,16 @@
+title: tf-gcp-training-lab
+description: Terraform + GCP Training Lab Documentation
+
+theme: minima
+
+# Show nested pages in header navigation
+header_pages:
+  - index.md
+  - getting-started/gcloud.md
+  - cicd/github-actions.md
+
+# Optional clean URLs (removes .html)
+permalink: pretty
+
+# Optional: enable markdown features
+markdown: kramdown
