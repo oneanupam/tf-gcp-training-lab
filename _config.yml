@@ -2,7 +2,7 @@ title: Terraform Training Lab
 description: Terraform + GCP Training Lab Documentation
 
 theme: minima
-source: docs
+# source: docs
 
 # Show nested pages in header navigation
 header_pages:
