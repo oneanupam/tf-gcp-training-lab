@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Outputs
+title: Built-In Functions
 ---
 
-This sub-project contains terraform code to understand the concept of `Output Block` and its optional arguments with the help of resource deployment on Google Public Cloud and Random ID generation.
+This sub-project contains terraform code to understand the concept of multiple `built-in functions` with the help of resource deployment on Google Cloud Platform.
 
-- Output values make information available on the command line about your infrastructure, and can expose information for other Terraform configurations to use.
-- It is typically recommended to place all the output values in a file `outputs.tf`. These outputs can be viewed on CLI using `terraform output`.
+- The Terraform language includes a number of built-in functions that you can call to transform and combine values. The Terraform language does not support user-defined functions, and so only the functions built in to the language are available for use.
+- The examples in this directory illustrates the working of few String and Collection functions.
 
 ## Prerequisites
 
@@ -25,4 +25,4 @@ To execute the terraform code, go to command prompt and then run the following c
 
 ## References
 
-- https://developer.hashicorp.com/terraform/language/values/outputs
+- https://developer.hashicorp.com/terraform/language/functions

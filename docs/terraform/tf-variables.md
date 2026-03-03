@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Terraform Variables
+title: Variables
 ---
 
 This sub-project contains terraform code to understand the concept of `variable declaration and definition` with the help of resource deployment on Google Cloud Platform.
