@@ -41,6 +41,7 @@ variable "auto_create_subnetworks" {
   description = <<EOT
   When set to true, the network is created in auto subnet mode and it will create a subnet
   for each region automatically across the 10.128.0.0/9 address range.
+  https://developer.hashicorp.com/terraform/language/expressions/strings
   EOT
 }
 
